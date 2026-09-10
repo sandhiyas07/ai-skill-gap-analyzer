@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Skill Gap Analyzer</title>
+
+  <!-- Google Fonts (free, no API key required) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Our stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-mark">AI</span>
+        <span class="logo-text">Skill Gap Analyzer</span>
+      </div>
+      <p class="tagline">Find the gap. Close the gap. Land the role.</p>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+
+    <!-- ===================== INPUT FORM SECTION ===================== -->
+    <section class="card form-card" id="formSection">
+      <h2 class="card-title">Tell us about you</h2>
+      <p class="card-subtitle">Fill in your details and we'll build a personalised skill roadmap.</p>
+
+      <form id="skillForm" novalidate>
+
+        <!-- Name field -->
+        <div class="field-group">
+          <label for="userName">Your Name</label>
+          <input type="text" id="userName" placeholder="e.g. Priya Sharma" autocomplete="off" />
+          <span class="error-text" id="nameError">Please enter your name.</span>
+        </div>
+
+        <!-- Job role dropdown -->
+        <div class="field-group">
+          <label for="jobRole">Target Job Role</label>
+          <select id="jobRole">
+            <option value="" disabled selected>Select a job role</option>
+            <option value="Software Developer">Software Developer</option>
+            <option value="Frontend Developer">Frontend Developer</option>
+            <option value="Backend Developer">Backend Developer</option>
+            <option value="Data Analyst">Data Analyst</option>
+            <option value="Data Scientist">Data Scientist</option>
+            <option value="AI/ML Engineer">AI/ML Engineer</option>
+            <option value="Full Stack Developer">Full Stack Developer</option>
+          </select>
+          <span class="error-text" id="roleError">Please select a target job role.</span>
+        </div>
+
+        <!-- Current skills checkboxes -->
+        <div class="field-group">
+          <label>Current Skills</label>
+          <div class="skills-grid" id="skillsGrid">
+            <!-- Checkboxes are injected by script.js so the skill list lives in one place -->
+          </div>
+          <span class="error-text" id="skillsError">Please select at least one skill.</span>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="button-row">
+          <button type="submit" class="btn btn-primary" id="analyzeBtn">Analyze Skills</button>
+          <button type="button" class="btn btn-ghost" id="resetBtn">Reset</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ===================== RESULTS SECTION (hidden until analysis runs) ===================== -->
+    <section class="card results-card hidden" id="resultsSection">
+
+      <!-- Welcome + role banner -->
+      <div class="results-header">
+        <h2 id="welcomeMsg">Welcome!</h2>
+        <p id="targetRoleMsg" class="results-role"></p>
+      </div>
+
+      <!-- Match percentage + progress bar -->
+      <div class="match-block">
+        <div class="match-percent-wrap">
+          <span class="match-percent" id="matchPercent">0%</span>
+          <span class="match-label">Skill Match</span>
+        </div>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+        <p class="skill-level" id="skillLevel"></p>
+        <p class="motivation-msg" id="motivationMsg"></p>
+      </div>
+
+      <!-- Matching vs Missing skills -->
+      <div class="two-col">
+        <div class="skill-panel matched-panel">
+          <h3>✔ Current Skills</h3>
+          <ul id="matchedList" class="skill-list"></ul>
+        </div>
+        <div class="skill-panel missing-panel">
+          <h3>✘ Missing Skills</h3>
+          <ul id="missingList" class="skill-list"></ul>
+        </div>
+      </div>
+
+      <!-- Simple bar chart -->
+      <div class="chart-block">
+        <h3>Skill Coverage Chart</h3>
+        <div class="bar-chart" id="barChart"></div>
+      </div>
+
+      <!-- Learning roadmap -->
+      <div class="roadmap-block">
+        <h3>Recommended Learning Roadmap</h3>
+        <ol class="roadmap-list" id="roadmapList"></ol>
+      </div>
+
+      <!-- Recommended projects -->
+      <div class="projects-block">
+        <h3>Recommended Projects</h3>
+        <ul class="projects-list" id="projectsList"></ul>
+      </div>
+
+      <!-- Progress tracker section -->
+      <div class="progress-section">
+        <h3>Your Progress</h3>
+        <p>You have mastered <span id="progressCount">0</span> of <span id="progressTotal">0</span> required skills for this role.</p>
+        <div class="progress-bar-track small">
+          <div class="progress-bar-fill" id="progressFill2"></div>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button type="button" class="btn btn-primary" id="analyzeAgainBtn">Analyze Again</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Built with HTML, CSS &amp; JavaScript — no backend, no API keys, 100% client-side.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
